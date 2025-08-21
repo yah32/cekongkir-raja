@@ -56,7 +56,7 @@
       text-align: center;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 500px) {
       body {
         margin: 10px;
       }
@@ -118,66 +118,66 @@
 <body>
   <table>
     <thead>
-      <tr>
+  <tr>
         <th>Nama Barang</th>
         <th>Berat / Pcs (Gram)</th>
-         <th>Harga</th>
+        <th>Harga</th>
         <th>Jumlah Order</th>
         <th>Total Berat (Gram)</th>
-       
+        <th>Total Harga</th> <!-- Tambahkan kolom ini -->
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Brightening Body Serum</td>
         <td class="berat">195</td>
-         <td class="harga">Rp 70.000,00</td>
+        <td class="harga">Rp 70.000</td>
         <td><input type="number" min="0" value="" class="jumlah"></td>
         <td class="total">0</td>
-       
+        <td class="total-harga">0</td> <!-- Tambahkan kolom ini -->
       </tr>
       <tr>
         <td>Brightening Soap</td>
         <td class="berat">120</td>
-        <td class="harga">Rp 32.000,00</td>
+        <td class="harga">Rp 32.000</td>
         <td><input type="number" min="0" value="" class="jumlah"></td>
-        <td class="total"></td>
-        
+        <td class="total">0</td>
+        <td class="total-harga">0</td>
       </tr>
       <tr>
         <td>Gold Jelly</td>
         <td class="berat">60</td>
-        <td class="harga">Rp 65.000,00</td>
+        <td class="harga">Rp 65.000</td>
         <td><input type="number" min="0" value="" class="jumlah"></td>
         <td class="total">0</td>
-        
+        <td class="total-harga">0</td>
       </tr>
       <tr>
         <td>Lipstik</td>
         <td class="berat">20</td>
-         <td class="harga">Rp 40.000,00</td>
+        <td class="harga">Rp 40.000</td>
         <td><input type="number" min="0" value="" class="jumlah"></td>
         <td class="total">0</td>
-       
+        <td class="total-harga">0</td>
       </tr>
       <tr>
         <td>Body Scrub</td>
         <td class="berat">195</td>
-        <td class="harga">Rp 70.000,00</td>
+        <td class="harga">Rp 70.000</td>
         <td><input type="number" min="0" value="" class="jumlah"></td>
         <td class="total">0</td>
-        
+        <td class="total-harga">0</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="2">Total Berat Semua Barang (Gram)</td>
+        <td colspan="2">Total Berat & Harga Semua Barang (Gram)</td>
         <td></td>
         <td></td>
-        
-        <td id="grandTotal" >0</td>
+        <td id="grandTotal">0</td>
+        <td id="grandTotalHarga">0</td>
+        <td></td>
       </tr>
-      
     </tfoot>
   </table>
 <br>
@@ -187,28 +187,42 @@
             </button>
 <div type="button" id="resetBtn"></div>
 </div>
-
   <script>
     const jumlahInputs = document.querySelectorAll(".jumlah");
     const grandTotalEl = document.getElementById("grandTotal");
+    const grandTotalHargaEl = document.getElementById("grandTotalHarga");
+
+    function parseHarga(hargaStr) {
+      // Mengubah "Rp 70.000,00" menjadi 70000
+      return parseInt(hargaStr.replace(/[^0-9]/g, ''));
+    }
+
+    function formatRupiah(angka) {
+      return 'Rp ' + angka.toLocaleString('id-ID');
+    }
 
     function hitung() {
       let grandTotal = 0;
+      let grandTotalHarga = 0;
       document.querySelectorAll("tbody tr").forEach(row => {
         const berat = parseInt(row.querySelector(".berat").innerText);
+        const harga = parseHarga(row.querySelector(".harga").innerText);
         const jumlah = parseInt(row.querySelector(".jumlah").value) || 0;
         const total = berat * jumlah;
+        const totalHarga = harga * jumlah;
         row.querySelector(".total").innerText = total;
+        row.querySelector(".total-harga").innerText = formatRupiah(totalHarga);
         grandTotal += total;
+        grandTotalHarga += totalHarga;
       });
       grandTotalEl.innerText = grandTotal;
+      grandTotalHargaEl.innerText = formatRupiah(grandTotalHarga);
     }
 
     jumlahInputs.forEach(input => {
       input.addEventListener("input", hitung);
     });
 
-    // Fungsi reset
     document.getElementById("resetBtn").addEventListener("click", function() {
       jumlahInputs.forEach(input => input.value = "");
       hitung();
@@ -216,6 +230,8 @@
 
     hitung(); // jalankan awal
   </script>
+
+>
   
 </body>
 
