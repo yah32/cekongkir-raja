@@ -9,6 +9,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     
     <style>
+    .container {
+      margin-top: 20px;
+      max-width: 1080px;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .card {
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #0471D8FF);
+      color: white;
+      border-radius: 20px 20px 0 0;
+    }
         .loader{border:4px solid #c9c9c9ff;border-top:4px solid #4f46e5;border-radius:50%;width:30px;height:30px;animation:spin 1s linear infinite;margin:0 auto;display:none}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
     body {
       font-family: Arial, sans-serif;
@@ -56,7 +77,58 @@
       text-align: center;
     }
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 1024px) {
+     .card-container {
+            flex-direction: column;
+        
+        }
+        .card {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+      
+        .card-header {
+            font-size: 1.5rem;
+            padding: 10px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+      table {
+        font-size: 14px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      .loader {
+        width: 30px;
+        height: 30px;
+      }
+      .btn-check {
+        width: 100%;
+        padding: 10px;
+      }
+      .results-container {
+        padding: 20px;
+      }
+      .results-container h2 {   
+        font-size: 18px;
+      }
+      .results-container .flex {
+        flex-direction: column;
+        align-items: center;
+      }
+      .results-container .flex > span {
+        margin-bottom: 10px;
+      }
+      .results-container .flex > span:last-child {
+        margin-bottom: 0;
+      }
+      .btn-reset {
+        width: 100%;
+        padding: 10px;
+      }
+    
       body {
         margin: 10px;
       }
@@ -124,7 +196,8 @@
         <th>Harga</th>
         <th>Jumlah Order</th>
         <th>Total Berat (Gram)</th>
-        <th>Total Harga</th> <!-- Tambahkan kolom ini -->
+        <th>Total Harga</th>
+        <!-- Tambahkan kolom ini -->
       </tr>
     </thead>
     <tbody>
@@ -184,7 +257,7 @@
 <div class="flex justify-center mb-6 flex-col items-center">
    <button type="button" class="btn-reset bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" id="resetBtn">
                 Reset
-            </button>
+    </button>
 <div type="button" id="resetBtn"></div>
 </div>
   <script>
