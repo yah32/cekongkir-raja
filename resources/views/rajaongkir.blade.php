@@ -55,13 +55,65 @@
       border-radius: 6px;
       text-align: center;
     }
+
+    @media screen and (max-width: 768px) {
+      body {
+        margin: 10px;
+      }
+      table th, table td {
+        padding: 8px;
+      }
+      input[type="number"] {
+        width: 80px;
+      }
+        button {
+            width: 80px;
+            padding: 8px;
+        }
+        table {
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 24px;
+        }
+        .loader {
+            width: 20px;
+            height: 20px;
+        }
+        .btn-check {
+            width: 100%;
+            padding: 10px;
+        }
+        .results-container {
+            padding: 10px;
+        }
+        .results-container h2 {
+            font-size: 20px;
+        }
+        .results-container .flex {
+            flex-direction: column;
+            align-items: center;
+        }
+        .results-container .flex > span {
+            margin-bottom: 10px;
+        }
+        .results-container .flex > span:last-child {
+            margin-bottom: 0;
+        }
+        .btn-reset {
+            width: 100%;
+            padding: 10px;
+        }
+        
+        
+    }
    
    </style>
 </head>
 
 <body class="bg-blue-300 min-h-screen flex items-center justify-center p-4">
 
-    <div class="bg-white p-8 rounded-xl shadow w-full max-w-5xl">
+    <div class="bg-white p-8 rounded-xl shadow w-full max-w-7xl">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Cek Ongkir Kedas Beauty</h1>
 <body>
   <table>
